@@ -4,12 +4,21 @@
  * the placement of whitespace and braces.
  */
 
+export const rulesDirectory = "./rules";
+
 export const jsRules = {
   "indent": [true, "spaces"],
   "linebreak-style": [true, "LF"],
   "eofline": true,
   "max-line-length": {options: [120]},
   "no-trailing-whitespace": true,
+
+  "no-unicode": {options: {
+    "comment": "always",
+    "identifier": "never",
+    "string": "always",
+    "template": "always",
+  }},
 
   "comment-format": [true, "check-space"],
   "jsdoc-format": true,
