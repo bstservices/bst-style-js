@@ -1,0 +1,11 @@
+{
+  "name": "bst-style-js",
+  "version": "1.0.0",
+  "description": "BST code style for JS and similar languages, with linter rules.",
+  "main": "index.js",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "tslint": "^5.2.0",
+    "typescript": "^2.3.2"
+  }
+}

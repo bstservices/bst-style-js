@@ -1,0 +1,12 @@
+# dependencies installed via Yarn/npm
+/node_modules/
+
+# build output
+/tslint/**/*.js
+/tslint/**/*.d.ts
+
+# IDE config files - please keep these to yourself
+/.classpath
+/.project
+/.idea/
+/*.iml
