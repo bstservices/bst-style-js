@@ -133,7 +133,11 @@ export const jsRules = {
 
   // enforce that variable names are camelCase or ANGRY_SNAKE_CASE
   // also prohibits variable names starting or ending with an underscore
-  "variable-name": [true, "check-format", "ban-keywords"],
+  "variable-name": [true,
+    "check-format",
+    "ban-keywords",
+    "allow-pascal-case",
+  ],
 
 
   // prefer `let foo;` over `let foo = undefined;`
