@@ -14,8 +14,8 @@
  */
 
 
-import * as ts from "typescript";
 import * as Lint from "tslint";
+import * as ts from "typescript";
 
 
 const OPTION = {
@@ -41,7 +41,7 @@ interface Options
 export class Rule
 extends Lint.Rules.AbstractRule
 {
-  public static metadata: Lint.IRuleMetadata = {
+  static metadata: Lint.IRuleMetadata = {
     ruleName: "no-unicode",
     description: "Disallows use of non-ASCII characters.",
     descriptionDetails: Lint.Utils.dedent`
@@ -50,24 +50,23 @@ extends Lint.Rules.AbstractRule
       the source file.
     `,
     rationale: Lint.Utils.dedent`
-      
     `,
     optionsDescription: Lint.Utils.dedent`
       What this rule does with non-ASCII characters can be configured
       independently for each of the contexts in which ECMAScript allows them.
-      
+
       The supported behaviors are:
       * \`always\` does nothing
       * \`never\` generates a warning
       * \`escaped\` generates a warning including advice on how to correctly
         escape the offending character and a fix to do so automatically
-      
+
       The supported contexts are:
       * \`comment\` for basic single- and multi-line comments
       * \`identifier\` for all identifiers
       * \`string\` for string literals
       * \`template\` for template literals
-      
+
       The defaults are:
       \`\`\`{
         "comment": "always",
@@ -94,7 +93,7 @@ extends Lint.Rules.AbstractRule
 
   apply(sourceFile: ts.SourceFile): Lint.RuleFailure[] {
     return this.applyWithWalker(
-      new Walker(sourceFile, this.getOptions())
+      new Walker(sourceFile, this.getOptions()),
     );
   }
 }
@@ -109,10 +108,10 @@ interface Problem
 
 function escapeUnicode(raw: string): string {
   let result = "";
-  for (let character of raw) {
+  for (const character of raw) {
     const codepoint = character.codePointAt(0);
     if (codepoint) {
-      result = result + "\\u{" + codepoint.toString(16) + "}";
+      result = `${result}\\u{${codepoint.toString(16)}}`;
     }
   }
   return result;
@@ -125,6 +124,7 @@ function forEachProhibitedCharacter(
   callback: (problem: Problem) => void,
 ): void {
   let match;
+  // tslint:disable-next-line:no-conditional-assignment
   while (match = PATTERN.exec(text)) {
     callback({
       pos: match.index,
@@ -139,7 +139,7 @@ class Walker
 extends Lint.RuleWalker {
   private config: Options;
   private file: ts.SourceFile;
-  private problems: Array<Problem>;
+  private problems: Problem[];
 
   constructor(sourceFile: ts.SourceFile, options: Lint.IOptions) {
     super(sourceFile, options);
@@ -204,7 +204,7 @@ extends Lint.RuleWalker {
 
     super.visitSourceFile(node);
 
-    for (let problem of this.problems) {
+    for (const problem of this.problems) {
       this.addProhibitedFailure(problem, "unknown context");
     }
   }
@@ -254,7 +254,7 @@ extends Lint.RuleWalker {
   }
 
   protected visitNoSubstitutionTemplateLiteral(
-    node: ts.NoSubstitutionTemplateLiteral
+    node: ts.NoSubstitutionTemplateLiteral,
   ): void {
     this.handleProblemsForNode(node, (problem) => {
       this.maybeAddFailure(problem, this.config.template, "template literals");
@@ -296,7 +296,7 @@ extends Lint.RuleWalker {
         pos: number,
         end: number,
         kind: ts.CommentKind,
-        hasTrailingNewLine: boolean
+        hasTrailingNewLine: boolean,
       ) => {
         this.visitComment({pos, end, kind, hasTrailingNewLine});
       };
@@ -308,7 +308,7 @@ extends Lint.RuleWalker {
     switch (node.kind) {
       case ts.SyntaxKind.NoSubstitutionTemplateLiteral:
         this.visitNoSubstitutionTemplateLiteral(
-          (node as ts.NoSubstitutionTemplateLiteral)
+          (node as ts.NoSubstitutionTemplateLiteral),
         );
         break;
     }

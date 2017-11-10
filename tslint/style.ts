@@ -55,8 +55,8 @@ export const jsRules = {
       "static-method",
       "instance-field",
       "constructor",
-      "instance-method"
-    ]
+      "instance-method",
+    ],
   }},
 
   "ordered-imports": {options: {
@@ -133,7 +133,8 @@ export const jsRules = {
 
   // enforce that variable names are camelCase or ANGRY_SNAKE_CASE
   // also prohibits variable names starting or ending with an underscore
-  "variable-name": [true,
+  "variable-name": [
+    true,
     "check-format",
     "ban-keywords",
     "allow-pascal-case",
@@ -192,13 +193,14 @@ export const rules = {
       "parameter": "nospace",
       "property-declaration": "nospace",
       "variable-declaration": "nospace",
-    }, { //right of the colon
+    },
+    { // right of the colon
       "call-signature": "onespace",
       "index-signature": "onespace",
       "parameter": "onespace",
       "property-declaration": "onespace",
       "variable-declaration": "onespace",
-    }
+    },
   ]},
 
 
