@@ -118,7 +118,7 @@ function escapeUnicode(raw: string): string {
   return result;
 }
 
-const PATTERN = /[^\r\n\t\u{0020}-\u{007E}]/umg;
+const PATTERN = /[^\r\n\t\x20-\x7E]/mg;
 
 function forEachProhibitedCharacter(
   text: string,
