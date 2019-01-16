@@ -46,4 +46,6 @@ const rules = {
 
   // warn on type predicates that are always true or always false
   "strict-type-predicates": true,
+
+  "unnecessary-bind": true,
 };

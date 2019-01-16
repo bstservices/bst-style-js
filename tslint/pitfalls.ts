@@ -56,9 +56,10 @@ export const jsRules = {
   // if you need one, put a comment in it
   "no-empty": true,
 
-  // prohibit use of `eval()`
+  // prohibit use of `eval()` and the Function constructor
   // `eval` is never the right way to do anything. ever.
   "no-eval": true,
+  "function-constructor": true,
 
   // warn on template substitutions (`${...}`) in non-template strings
   "no-invalid-template-strings": true,
@@ -88,6 +89,9 @@ export const jsRules = {
   // if you want fall through, end the case with `/* falls through */`
   "no-switch-case-fall-through": true,
 
+  // two switch cases with the same value is always a mistake
+  "no-duplicate-switch-case": true,
+
   // prohibit jumping statements in `finally` blocks
   // their behavior is confusing
   "no-unsafe-finally": true,
@@ -108,12 +112,12 @@ export const jsRules = {
   // except for `foo == null` to check for `null` and `undefined` together
   "triple-equals": [true, "allow-null-check"],
 
-  // warn when `typeof` is compared to a string it can't return
-  "typeof-compare": true,
-
   // warn that `isNaN()` should be used on comparisons with `NaN`
   // `NaN` is never equal to anything and lots of people don't know that
   "use-isnan": true,
+
+  // the comma operator is confusing and only rarely useful
+  "ban-comma-operator": true,
 };
 
 export const rules = {

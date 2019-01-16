@@ -5,7 +5,10 @@
   "main": "index.js",
   "license": "Apache-2.0",
   "dependencies": {
-    "tslint": "^5.2.0",
-    "typescript": "^2.3.2"
+    "tslint": "^5.12.1"
+  },
+  "devDependencies": {
+    "@types/node": "^10.0.0",
+    "typescript": "^3.2.2"
   }
 }

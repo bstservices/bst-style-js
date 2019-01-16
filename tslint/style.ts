@@ -21,11 +21,12 @@
 export const rulesDirectory = "./rules";
 
 export const jsRules = {
-  "indent": [true, "spaces"],
+  "indent": [true, "spaces", 2],
   "linebreak-style": [true, "LF"],
   "eofline": true,
   "max-line-length": {options: [120]},
   "no-trailing-whitespace": true,
+  "encoding": true, // require UTF-8
 
   "no-unicode": {options: {
     "comment": "always",
@@ -37,13 +38,20 @@ export const jsRules = {
   "comment-format": [true, "check-space"],
   "jsdoc-format": true,
 
-  "quotemark": [true, "double", "jsx-double", "avoid-escape"],
+  "quotemark": [
+    true,
+    "double",
+    "jsx-double",
+    "avoid-escape",
+    "avoid-template",
+  ],
 
   "semicolon": [true, "always"],
 
   "trailing-comma": {options: {
     "multiline": "always",
     "singleline": "never",
+    "esSpecCompliant": true,
   }},
 
   // =========================
@@ -78,6 +86,8 @@ export const jsRules = {
     // "check-typecast" is made irrelevant by "no-angle-bracket-type-assertion"
     "check-preblock",
   ]},
+
+  "space-within-parens": 0,
 
   "import-spacing": true,
 
@@ -124,6 +134,10 @@ export const jsRules = {
   // prefer `foo(): void` over `foo: () => void` in interfaces and types
   "prefer-method-signature": true,
 
+  // force use of arrow lambdas to bind `this`
+  // intstead of assigning `this` to a variable in closure scope
+  "no-this-assignment": true,
+
 
   // =============
   // Naming Things
@@ -155,6 +169,11 @@ export const jsRules = {
   // prefer `{ foo }` over `{ foo: foo }`
   "object-literal-shorthand": true,
 
+  // use `{... object}` instead of `Object.assign({}, object)`
+  // this allows for better type checking
+  "prefer-object-spread": true,
+
+
   // prefer `let foo; let bar;` to `let foo, bar;`
   "one-variable-per-declaration": [true, "ignore-for-loop"],
 
@@ -171,9 +190,18 @@ export const jsRules = {
   // prefer `for ... of` over `for ... in` when iterating arrays
   "prefer-for-of": true,
 
+  "prefer-while": true,
+
 
   // prevent labels on statements that don't work with `break`
   "label-position": true,
+
+
+  // require all imports from a given module to be made in one statement
+  "no-duplicate-imports": true,
+
+  // require all imports to be made by name
+  "no-default-import": true,
 };
 
 export const rules = {
