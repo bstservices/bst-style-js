@@ -177,9 +177,6 @@ export const jsRules = {
   // prefer `let foo; let bar;` to `let foo, bar;`
   "one-variable-per-declaration": [true, "ignore-for-loop"],
 
-  // prefer template literals over string concatenation
-  "prefer-template": [true, "allow-single-concat"],
-
 
   // prefer ES2015 `import 'foo'` over `require('foo')`
   "no-require-imports": true,
