@@ -138,8 +138,8 @@ function forEachProhibitedCharacter(
 class Walker
 extends Lint.RuleWalker {
   private config: Options;
-  private file: ts.SourceFile;
-  private problems: Problem[];
+  private file?: ts.SourceFile;
+  private problems: Problem[] = [];
 
   constructor(sourceFile: ts.SourceFile, options: Lint.IOptions) {
     super(sourceFile, options);
@@ -292,6 +292,8 @@ extends Lint.RuleWalker {
 
   protected visitNode(node: ts.Node): void {
     if (node.parent) {
+      if (this.file == null) throw new Error("missed call to visitSourceFile");
+
       const callback = (
         pos: number,
         end: number,
