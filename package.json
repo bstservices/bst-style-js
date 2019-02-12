@@ -1,9 +1,16 @@
 {
-  "name": "bst-style-js",
-  "version": "1.0.0",
+  "name": "@bstservices/style",
+  "version": "0.1.0",
   "description": "BST code style for JS and similar languages, with linter rules.",
-  "main": "index.js",
+  "repository": "github:bstservices/bst-style-js",
   "license": "Apache-2.0",
+  "author": "BST Event Services, LLC",
+
+  "files": [
+    "tslint/**/*.js",
+    "tslint/**/*.d.ts"
+  ],
+
   "dependencies": {
     "tslint": "^5.12.1"
   },
